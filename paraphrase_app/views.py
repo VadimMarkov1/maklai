@@ -5,9 +5,9 @@ from .utils import find_nouns_positions, generate_nouns_permutations
 
 @api_view(['GET'])
 def paraphrase(request):
-    tree_string = request.GET.get('tree', '')
-    limit = int(request.GET.get('limit', '20'))
     try:
+        tree_string = request.GET.get('tree', '')
+        limit = int(request.GET.get('limit', '20'))
         nouns = find_nouns_positions(tree_string)
         results = generate_nouns_permutations(tree_string, nouns, limit)
         response_data = {'paraphrased_trees': results}
